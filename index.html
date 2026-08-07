@@ -1,0 +1,561 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>はじめる前の全体図｜4つのAIの違いと、AI秘書でできること</title>
+<meta name="description" content="ChatGPT・Gemini・Codex・Claude Code は何が違うのか、料金はいくらか。そして CC-Booster のAI秘書で何ができるのかを、専門用語なしで1枚にまとめた地図">
+<script>(function(){try{var t=localStorage.getItem("ccbx.theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
+<style>
+:root{
+  color-scheme: light dark;
+  --bg:#FDFBF6; --surface:#FFFFFF; --surface-2:#F4F1E9;
+  --line:#E2DDD1; --line-strong:#C9C2B2;
+  --ink:#1B2436; --ink-soft:#4A5568; --ink-faint:#6B7280;
+  --brand:#1E3A5F; --brand-ink:#FFFFFF; --brand-soft:#E8EEF6; --link:#17457A;
+  --ok:#1F7A4D; --ok-soft:#E6F2EB;
+  --warn:#B45309; --warn-soft:#FBF0E2;
+  --danger:#A3231C; --danger-soft:#FBEAE8;
+  --focus:#0B63CE;
+  --shadow:0 1px 2px rgba(27,36,54,.06), 0 6px 18px rgba(27,36,54,.07);
+  --radius:14px; --radius-sm:9px;
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px;
+  --s5:24px; --s6:32px; --s7:48px; --s8:64px; --s9:96px;
+  --topbar-h:56px;
+  --font-sans:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic Medium","Yu Gothic",YuGothic,"Noto Sans JP","Segoe UI",Meiryo,system-ui,sans-serif;
+  --font-mono:"SFMono-Regular",Menlo,Consolas,"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Noto Sans JP",monospace;
+}
+@media (min-width:768px){ :root{ --topbar-h:64px; } }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12161F; --surface:#1A2030; --surface-2:#222A3C;
+    --line:#2E3648; --line-strong:#3E4860;
+    --ink:#E8EAF0; --ink-soft:#A8B0C0; --ink-faint:#8A93A6;
+    --brand:#7FB3EA; --brand-ink:#0E1420; --brand-soft:#1C2740; --link:#8FC0F2;
+    --ok:#57C98A; --ok-soft:#16301F;
+    --warn:#F0A868; --warn-soft:#2E2216;
+    --danger:#F08A82; --danger-soft:#2E1917;
+    --focus:#6FA8FF;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12161F; --surface:#1A2030; --surface-2:#222A3C;
+  --line:#2E3648; --line-strong:#3E4860;
+  --ink:#E8EAF0; --ink-soft:#A8B0C0; --ink-faint:#8A93A6;
+  --brand:#7FB3EA; --brand-ink:#0E1420; --brand-soft:#1C2740; --link:#8FC0F2;
+  --ok:#57C98A; --ok-soft:#16301F;
+  --warn:#F0A868; --warn-soft:#2E2216;
+  --danger:#F08A82; --danger-soft:#2E1917;
+  --focus:#6FA8FF;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.35);
+}
+:root[data-theme="light"]{
+  --bg:#FDFBF6; --surface:#FFFFFF; --surface-2:#F4F1E9;
+  --line:#E2DDD1; --line-strong:#C9C2B2;
+  --ink:#1B2436; --ink-soft:#4A5568; --ink-faint:#6B7280;
+  --brand:#1E3A5F; --brand-ink:#FFFFFF; --brand-soft:#E8EEF6; --link:#17457A;
+  --ok:#1F7A4D; --ok-soft:#E6F2EB;
+  --warn:#B45309; --warn-soft:#FBF0E2;
+  --danger:#A3231C; --danger-soft:#FBEAE8;
+  --focus:#0B63CE;
+  --shadow:0 1px 2px rgba(27,36,54,.06), 0 6px 18px rgba(27,36,54,.07);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+[hidden]{ display:none !important; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--font-sans); font-size:18px; line-height:1.9;
+  letter-spacing:.02em; text-wrap:pretty;
+}
+img,svg{ max-width:100%; height:auto; }
+p,li{ font-size:18px; line-height:1.9; }
+@media (min-width:768px){ body,p,li{ font-size:19px; } }
+p{ margin:0 0 var(--s4); }
+
+/* --- 見出しの階段（上の余白 > 下の余白） --- */
+h1{ margin:0 0 var(--s3); }
+h2,h3{ margin:var(--s7) 0 var(--s3); }
+h4{ margin:var(--s6) 0 var(--s3); }
+h2{ font-size:22px; font-weight:700; line-height:1.5; letter-spacing:.01em; }
+h3{ font-size:19px; font-weight:700; line-height:1.55; letter-spacing:.01em; }
+h4{ font-size:17px; font-weight:700; line-height:1.6; letter-spacing:.02em; }
+@media (min-width:768px){ h2{font-size:30px; letter-spacing:0;} h3{font-size:21px;} h4{font-size:18px;} }
+.sec > h2:first-child{ margin-top:0; }
+.hero h1{ margin-top:0; }
+.outcome-card h3{ margin-top:0; }
+.step__head + h3{ margin-top:0; }
+.hint__body > h4:first-child,
+.gotmilk > h4:first-child,
+.helpdesk > h3:first-child{ margin-top:0; }
+.medal__title{ margin-top:0; }
+
+/* 章マーカー（ステップカードの左レールと同じ語彙） */
+.sec > h2{ position:relative; padding-left:16px; }
+.sec > h2::before{ content:""; position:absolute; left:0; top:.28em; bottom:.28em;
+  width:4px; border-radius:2px; background:var(--brand); }
+
+strong{ font-weight:700; }
+a{ color:var(--link); }
+a:not(.btn):not(.os-tab):not(.map-item):not(.skip){ text-decoration:underline; text-underline-offset:3px; }
+.muted{ color:var(--ink-soft); font-size:15px; line-height:1.85; }
+@media (min-width:768px){ .muted{ font-size:16px; } }
+.nw{ white-space:nowrap; }
+.mark{ background:var(--warn-soft); color:var(--ink); padding:0 .2em; border-radius:4px; }
+code{ font-family:var(--font-mono); font-size:.94em; background:var(--surface-2);
+  border:1px solid var(--line); border-radius:5px; padding:1px 5px;
+  overflow-wrap:anywhere; word-break:normal;
+  -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+pre code, .copybox__body code{ background:none; border:0; padding:0; font-size:inherit; }
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+:focus-visible{ outline:3px solid var(--focus); outline-offset:3px; border-radius:6px; }
+:focus:not(:focus-visible){ outline:3px solid transparent; }
+
+.skip{ position:absolute; left:-9999px; top:0; background:var(--brand); color:var(--brand-ink);
+  padding:var(--s3) var(--s4); border-radius:0 0 var(--radius-sm) 0; z-index:100; }
+.skip:focus{ left:0; }
+
+.wrap{ width:100%; max-width:46rem; margin-inline:auto; padding-inline:var(--s4); }
+@media (min-width:768px){ .wrap{ padding-inline:var(--s6); } }
+.wrap--wide{ max-width:64rem; }
+
+/* ---- topbar ---- */
+.topbar{ position:sticky; top:0; z-index:50; background:var(--bg);
+  background:color-mix(in srgb, var(--bg) 90%, transparent);
+  -webkit-backdrop-filter:saturate(1.2) blur(8px); backdrop-filter:saturate(1.2) blur(8px);
+  border-bottom:1px solid var(--line); }
+.topbar__in{ display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap;
+  min-height:56px; padding-block:var(--s2); }
+@media (min-width:768px){ .topbar__in{ min-height:64px; } }
+.os-switch{ display:flex; gap:var(--s2); }
+.os-tab{ display:inline-flex; align-items:center; justify-content:center;
+  min-height:44px; padding:6px 14px; border-radius:999px; font-size:15px; font-weight:700;
+  text-decoration:none; border:1px solid var(--line-strong); color:var(--ink-soft); background:transparent;
+  transition:background-color 120ms ease, border-color 120ms ease, color 120ms ease; }
+.os-tab.is-current{ background:var(--brand); color:var(--brand-ink); border-color:var(--brand); }
+.theme-toggle{ margin-left:auto; min-width:44px; min-height:44px; border-radius:999px;
+  border:1px solid var(--line-strong); background:var(--surface); color:var(--ink);
+  font-size:16px; cursor:pointer; transition:background-color 120ms ease, border-color 120ms ease; }
+.progress{ display:flex; align-items:center; gap:var(--s3); flex:1 1 14rem; min-width:0; }
+.progress__bar{ flex:1 1 auto; height:10px; border-radius:999px; background:var(--line-strong);
+  box-shadow:inset 0 0 0 1px var(--line-strong); overflow:hidden; min-width:60px; }
+.progress__fill{ display:block; height:100%; width:0%; background:var(--ok); border-radius:999px; transition:width 200ms ease; }
+.progress__num{ font-size:14px; font-weight:700; letter-spacing:.02em; white-space:nowrap; color:var(--ink-soft); }
+.progress__num b{ color:var(--ink); font-size:16px; }
+.progress__next{ font-weight:400; }
+@media (max-width:600px){
+  .progress{ order:3; flex-basis:100%; }
+  .progress__next{ display:none; }
+}
+
+/* ---- hero ---- */
+.hero{ background:var(--brand-soft); border-radius:var(--radius); padding:var(--s6) var(--s5);
+  margin-top:var(--s6); }
+.hero__label{ display:inline-block; font-size:13px; font-weight:700; letter-spacing:.04em;
+  color:var(--ink-soft); background:var(--surface); border:1px solid var(--line);
+  border-radius:999px; padding:4px 12px; margin-bottom:var(--s4); }
+.hero h1{ font-size:26px; font-weight:700; line-height:1.45; letter-spacing:.01em; }
+@media (min-width:768px){ .hero h1{ font-size:34px; } }
+.hero p.lead{ font-size:17px; line-height:1.9; letter-spacing:.02em; color:var(--ink); }
+@media (min-width:768px){ .hero p.lead{ font-size:19px; } }
+.hero p.lead, .hero .muted{ text-wrap:balance; }
+.hero__row{ display:flex; gap:var(--s3); flex-wrap:wrap; align-items:center; margin-top:var(--s5); }
+.hero__which{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-sm);
+  padding:var(--s3) var(--s4); margin-top:var(--s4); }
+.hero__which p{ margin:0; font-size:16px; }
+
+/* ---- buttons ---- */
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:var(--s2);
+  min-height:48px; padding:12px 20px; border-radius:999px; font-weight:700; font-size:16px;
+  letter-spacing:.02em; cursor:pointer; border:1px solid transparent; text-decoration:none;
+  font-family:inherit; transition:background-color 120ms ease, border-color 120ms ease, filter 120ms ease; }
+@media (min-width:768px){ .btn{ font-size:17px; } }
+.btn--primary{ background:var(--brand); color:var(--brand-ink); }
+.btn--ghost{ background:transparent; color:var(--brand); border-color:var(--brand); }
+.btn--quiet{ background:var(--surface-2); color:var(--ink-soft); border-color:var(--line); }
+.btn:active{ transform:translateY(1px); }
+
+/* ---- hover（ポインタのある機械だけ） ---- */
+@media (hover:hover){
+  .btn--primary:hover{ filter:brightness(1.12); }
+  .btn--ghost:hover{ background:color-mix(in srgb, var(--brand) 12%, transparent); }
+  .btn--quiet:hover{ background:var(--surface); border-color:var(--line-strong); }
+  .copybox__btn:hover{ filter:brightness(1.12); }
+  .copybox__more:hover{ background:var(--brand-soft); }
+  .os-tab:hover{ background:var(--surface-2); border-color:var(--brand); color:var(--ink); }
+  .os-tab.is-current:hover{ background:var(--brand); color:var(--brand-ink); }
+  .map-item:hover{ background:var(--surface-2); border-color:var(--brand); }
+  .hint > summary:hover{ background:color-mix(in srgb, var(--brand) 8%, var(--surface-2)); }
+  .theme-toggle:hover{ background:var(--surface-2); border-color:var(--brand); }
+  .done-check__label:hover .done-check__box{ border-color:var(--brand); }
+  a:not(.btn):not(.os-tab):not(.map-item):hover{ text-decoration-thickness:2px; }
+}
+
+/* ---- resume banner ---- */
+.resume{ margin-top:var(--s5); background:var(--ok-soft); border:1px solid var(--ok);
+  border-radius:var(--radius-sm); padding:var(--s4); display:none; }
+.resume.is-on{ display:block; }
+.resume__row{ display:flex; gap:var(--s3); flex-wrap:wrap; margin-top:var(--s3); }
+
+/* ---- chat demo ---- */
+.chat-demo{ margin-top:var(--s6); background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--radius); padding:var(--s5); box-shadow:var(--shadow); }
+@media (max-width:480px){ .chat-demo{ padding:var(--s4); } }
+.chat-demo__screen{ display:flex; flex-direction:column; gap:var(--s4); }
+.turn{ max-width:92%; }
+.turn--you{ align-self:flex-end; }
+.turn--ai{ align-self:flex-start; }
+.turn__bubble{ border-radius:var(--radius-sm); padding:var(--s3) var(--s4); font-size:17px; line-height:1.8; }
+.turn--you .turn__bubble{ background:var(--brand-soft); }
+.turn--ai .turn__bubble{ background:var(--surface-2); border-left:2px solid var(--brand); }
+.turn__who{ font-size:14px; font-weight:700; color:var(--ink-soft); margin-bottom:var(--s1); }
+.turn__note{ margin:var(--s2) 0 0; font-size:15px; font-weight:700; color:var(--brand); }
+.turn.is-new{ animation:fadeUp 160ms ease both; }
+@keyframes fadeUp{ from{ opacity:0; transform:translateY(6px);} to{ opacity:1; transform:none; } }
+.chat-demo__ctrl{ display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap; margin-top:var(--s5); }
+
+/* ---- outcome cards ---- */
+.outcome-grid{ display:grid; gap:var(--s4); grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); margin-top:var(--s4); }
+.outcome-card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+  padding:var(--s5); box-shadow:var(--shadow); }
+@media (max-width:480px){ .outcome-card{ padding:var(--s4); } }
+.outcome-card__icon{ font-size:24px; line-height:1; margin-bottom:var(--s2); }
+.outcome-card h3{ font-size:17px; }
+.outcome-card p{ margin:0; font-size:16px; }
+
+/* ---- step map ---- */
+.step-map{ margin-top:var(--s4); display:flex; flex-direction:column; gap:var(--s2); }
+.map-item{ display:flex; align-items:center; gap:var(--s3); text-decoration:none; color:var(--ink);
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-sm);
+  padding:var(--s3) var(--s4); min-height:48px;
+  transition:background-color 120ms ease, border-color 120ms ease; }
+.map-item__no{ flex:0 0 auto; width:28px; height:28px; border-radius:999px; background:var(--brand);
+  color:var(--brand-ink); display:inline-flex; align-items:center; justify-content:center;
+  font-size:14px; font-weight:700; }
+.map-item__title{ flex:1 1 auto; font-weight:700; font-size:16px; }
+.map-item__time{ flex:0 0 auto; font-size:13px; color:var(--ink-soft); white-space:nowrap; }
+.map-item.is-done .map-item__no{ background:var(--ok); }
+.map-item.is-done .map-item__title{ color:var(--ink-soft); }
+
+/* ---- sections & steps ---- */
+.sec{ margin-top:var(--s7); scroll-margin-top:5.5rem; }
+@media (min-width:768px){ .sec{ margin-top:var(--s8); } }
+.step{ background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--brand);
+  border-radius:var(--radius); padding:var(--s5); box-shadow:var(--shadow);
+  margin-top:var(--s7); scroll-margin-top:5.5rem; }
+@media (max-width:480px){ .step{ padding:var(--s4); } }
+.step.is-done{ border-left-color:var(--ok); }
+.step__head{ display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap; margin-bottom:var(--s3); }
+.step__no{ display:inline-block; background:var(--brand-soft); color:var(--brand);
+  font-size:13px; font-weight:700; letter-spacing:.04em; border-radius:999px; padding:4px 12px; }
+.badge{ display:inline-block; font-size:13px; font-weight:700; letter-spacing:.04em;
+  background:var(--surface-2); color:var(--ink-soft); border:1px solid var(--line);
+  border-radius:999px; padding:4px 10px; }
+@media (min-width:768px){ .badge,.step__no{ font-size:14px; } }
+.step__lead{ color:var(--ink-soft); }
+.howto{ list-style:none; counter-reset:howto; padding:0; margin:var(--s4) 0; }
+.howto > li{ counter-increment:howto; position:relative; padding-left:40px; margin-bottom:var(--s4); }
+.howto > li::before{ content:counter(howto); position:absolute; left:0; top:2px;
+  width:28px; height:28px; border-radius:999px; background:var(--brand); color:var(--brand-ink);
+  display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; }
+.howto > li > p{ margin:var(--s2) 0 0; }
+.plain{ padding-left:1.4em; margin:var(--s4) 0; }
+.plain li{ margin-bottom:var(--s2); }
+
+/* ---- term ---- */
+.term__note{ color:var(--ink-soft); font-size:15px; }
+
+/* ---- copybox ---- */
+.copybox{ margin:var(--s4) 0; background:var(--surface-2); border:1px solid var(--line-strong);
+  border-radius:var(--radius-sm); }
+.copybox__head{ display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap;
+  padding:var(--s3) var(--s4); background:var(--surface-2); border-bottom:1px solid var(--line);
+  border-radius:calc(var(--radius-sm) - 1px) calc(var(--radius-sm) - 1px) 0 0;
+  position:sticky; top:var(--topbar-h); z-index:2; }
+.copybox__title{ font-size:15px; font-weight:700; flex:1 1 10rem; }
+.copybox__btn{ min-height:44px; padding:8px 16px; border-radius:999px; border:1px solid var(--brand);
+  background:var(--brand); color:var(--brand-ink); font-weight:700; font-size:16px; cursor:pointer;
+  font-family:inherit; transition:background-color 120ms ease, border-color 120ms ease, filter 120ms ease; }
+.copybox__btn.is-ok{ background:var(--ok); border-color:var(--ok); color:#fff; }
+.copybox__btn.is-ng{ background:var(--warn-soft); border-color:var(--warn); color:var(--ink); }
+.copybox__wrap{ position:relative; overflow:hidden;
+  border-radius:0 0 calc(var(--radius-sm) - 1px) calc(var(--radius-sm) - 1px); }
+.copybox__body{ margin:0; padding:var(--s4); font-family:var(--font-mono); font-size:14px;
+  line-height:1.75; letter-spacing:0; white-space:pre-wrap; word-break:break-word;
+  overflow-x:auto; }
+.copybox__wrap.is-clamped .copybox__body{ max-height:calc(22.75em + var(--s4) * 2); overflow-y:hidden; }
+@media (min-width:768px){ .copybox__body{ font-size:15px; } }
+.copybox__wrap.is-clamped::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:2.5em;
+  background:linear-gradient(to bottom, transparent, var(--surface-2)); pointer-events:none;
+  border-bottom:1px dashed var(--line-strong); }
+.copybox__more{ display:block; width:100%; min-height:44px; border:0; border-top:1px solid var(--line);
+  border-radius:0 0 calc(var(--radius-sm) - 1px) calc(var(--radius-sm) - 1px);
+  background:var(--surface-2); color:var(--brand); font-weight:700; font-size:15px; cursor:pointer;
+  font-family:inherit; transition:background-color 120ms ease; }
+.copybox__fail{ margin:0; padding:0 var(--s4) var(--s3); font-size:15px; color:var(--ink-soft); }
+.copyhint{ margin:0 0 var(--s2); font-size:15px; color:var(--ink-soft); }
+.whathappens{ margin:0 0 var(--s4); background:var(--surface-2); border-radius:var(--radius-sm);
+  padding:var(--s3) var(--s4); font-size:16px; }
+
+/* ---- notes ---- */
+.note{ margin:var(--s4) 0; border-radius:var(--radius-sm); padding:var(--s4); border-left:4px solid var(--line-strong); }
+.note__head{ font-weight:700; margin:0 0 var(--s2); }
+.note p:last-child{ margin-bottom:0; }
+.note--info{ background:var(--brand-soft); border-left-color:var(--brand); }
+.note--warn{ background:var(--warn-soft); border-left-color:var(--warn); }
+.note--danger{ background:var(--danger-soft); border-left-color:var(--danger); }
+.note--diff{ background:var(--surface-2); border-left-style:dashed; border-left-color:var(--line-strong); }
+
+/* ---- dialog card ---- */
+.dialog-card{ margin:var(--s4) 0; border:1px solid var(--line-strong); border-radius:var(--radius-sm);
+  padding:var(--s4); background:var(--surface); }
+.dialog-card__en{ font-family:var(--font-mono); font-size:15px; background:var(--surface-2);
+  border-radius:var(--radius-sm); padding:var(--s3); margin:0 0 var(--s3); }
+.dialog-card p{ margin:0 0 var(--s2); }
+.dialog-card p:last-child{ margin-bottom:0; }
+
+/* ---- accordion ---- */
+.hint{ margin:var(--s4) 0; border:1px solid var(--line); border-radius:var(--radius-sm); background:var(--surface-2); }
+.hint > summary{ list-style:none; cursor:pointer; font-weight:700; font-size:16px;
+  padding:var(--s3) var(--s4); min-height:48px; display:flex; align-items:center;
+  flex-wrap:wrap; gap:var(--s2);
+  background:var(--surface-2); color:var(--ink); transition:background-color 120ms ease; }
+.hint > summary > span:not(.hint__pill){ flex:1 1 12rem; min-width:0; }
+.hint > summary::-webkit-details-marker{ display:none; }
+.hint > summary::before{ content:"\25B8"; display:inline-block; color:var(--brand); transition:transform 160ms ease; }
+.hint[open] > summary::before{ transform:rotate(90deg); }
+.hint__pill{ margin-left:auto; flex:0 0 auto; font-size:12.5px; font-weight:700;
+  color:var(--brand); background:var(--brand-soft); border:1px solid var(--brand);
+  border-radius:999px; padding:2px 10px; white-space:nowrap; }
+.hint[open] > summary .hint__pill{ visibility:hidden; }
+.hint > summary{ border-radius:calc(var(--radius-sm) - 1px); }
+.hint[open] > summary{ border-radius:calc(var(--radius-sm) - 1px) calc(var(--radius-sm) - 1px) 0 0; }
+.hint__body{ padding:var(--s4); border-top:1px solid var(--line); background:var(--surface);
+  border-radius:0 0 calc(var(--radius-sm) - 1px) calc(var(--radius-sm) - 1px); }
+.hint__body > *:last-child{ margin-bottom:0; }
+
+/* ---- fix ---- */
+.fix__symptom{ color:var(--warn); font-weight:700; margin:0 0 var(--s2); }
+.fix__ok{ margin:0 0 var(--s3); }
+.fix__steps{ padding-left:1.4em; margin:0 0 var(--s3); }
+.fix__steps li{ margin-bottom:var(--s2); }
+
+/* ---- done check ---- */
+.done-check{ margin-top:var(--s5); border-top:1px dashed var(--line-strong); padding-top:var(--s4); }
+.done-check__label{ display:flex; align-items:center; gap:var(--s3); min-height:48px; cursor:pointer; }
+.done-check__box{ appearance:none; -webkit-appearance:none; flex:0 0 auto; width:24px; height:24px;
+  border:2px solid var(--line-strong); border-radius:6px; background:var(--surface); cursor:pointer;
+  position:relative; margin:0; transition:border-color 120ms ease, background-color 120ms ease; }
+.done-check__box:checked{ border-color:var(--ok); background:var(--ok); }
+.done-check__box:checked::after{ content:"\2713"; position:absolute; inset:0; color:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:700; }
+.done-check__text{ font-weight:700; font-size:17px; }
+.done-check__praise{ margin:var(--s3) 0 0; color:var(--ok); font-weight:700; }
+.gotmilk{ margin-top:var(--s4); background:var(--ok-soft); border:1px solid var(--ok);
+  border-radius:var(--radius-sm); padding:var(--s4); }
+.gotmilk p:last-child{ margin-bottom:0; }
+.gotmilk__head{ font-weight:700; margin:0 0 var(--s2); }
+
+/* ---- table ---- */
+.scroller{ overflow-x:auto; margin:var(--s4) 0; -webkit-overflow-scrolling:touch; }
+.scroller__hint{ font-size:14px; color:var(--ink-soft); margin:0 0 var(--s2); }
+table{ border-collapse:collapse; width:100%; min-width:30rem; font-size:16px; }
+th,td{ border:1px solid var(--line); padding:var(--s3); text-align:left; vertical-align:top; line-height:1.7; }
+th{ background:var(--surface-2); font-weight:700; }
+.table--stack{ min-width:0; }
+@media (max-width:600px){
+  .scroller--stack{ overflow-x:visible; }
+  .scroller--stack .scroller__hint{ display:none; }
+  .table--stack, .table--stack tbody, .table--stack tr, .table--stack td{ display:block; width:100%; }
+  .table--stack thead{ display:none; }
+  .table--stack tr{ border:1px solid var(--line); border-radius:var(--radius-sm);
+    margin-bottom:var(--s3); background:var(--surface); overflow:hidden; }
+  .table--stack td{ border:0; border-top:1px solid var(--line); padding:var(--s3); }
+  .table--stack td:first-child{ border-top:0; }
+  .table--stack td::before{ content:attr(data-label); display:block; font-weight:700;
+    font-size:14px; color:var(--ink-soft); letter-spacing:.04em; }
+}
+
+/* ---- badge / medal ---- */
+.medal{ margin-top:var(--s5); background:var(--brand-soft); border:1px solid var(--brand);
+  border-radius:var(--radius); padding:var(--s5); }
+.medal__title{ font-size:21px; font-weight:700; margin:0 0 var(--s3); }
+
+/* ---- 相談窓口 ---- */
+.helpdesk{ scroll-margin-top:5.5rem; margin-top:var(--s5); background:var(--surface); border:2px solid var(--brand);
+  border-radius:var(--radius); padding:var(--s5); box-shadow:var(--shadow); }
+@media (max-width:480px){ .helpdesk{ padding:var(--s4); } }
+.helpdesk__row{ display:flex; gap:var(--s3); flex-wrap:wrap; margin:var(--s4) 0; }
+
+/* ---- footer ---- */
+.footer{ margin-top:var(--s8); border-top:1px solid var(--line); padding-block:var(--s6) var(--s9); }
+.footer__row{ display:flex; gap:var(--s3); flex-wrap:wrap; margin-bottom:var(--s5); }
+.print-only{ display:none; }
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important;
+    transition-duration:.001ms !important; scroll-behavior:auto !important; }
+}
+
+@media print{
+  :root, :root[data-theme="dark"], :root[data-theme="light"]{
+    --bg:#fff; --surface:#fff; --surface-2:#f5f5f5;
+    --ink:#000; --ink-soft:#333; --ink-faint:#444; --line:#999; --line-strong:#666;
+    --brand:#000; --brand-ink:#fff; --brand-soft:#f0f0f0;
+    --ok:#000; --ok-soft:#f0f0f0; --warn:#000; --warn-soft:#f0f0f0;
+    --danger:#000; --danger-soft:#f0f0f0; --shadow:none;
+  }
+  html{ scroll-behavior:auto; }
+  body{ font-size:11pt; line-height:1.75; background:#fff; }
+  .topbar,.theme-toggle,.os-switch,.chat-demo__ctrl,.copybox__btn,.copybox__more,
+  #pgReset,#pgResetConfirm,.progress__bar,.resume,.skip,.hero__row,.hint__pill{ display:none !important; }
+  .copybox__head{ position:static; }
+  details{ display:block; }
+  details > summary{ list-style:none; font-weight:700; }
+  details:not([open]) > *:not(summary){ display:block !important; }
+  .turn{ display:block !important; max-width:100%; }
+  .step{ break-inside:avoid; page-break-inside:avoid; border:1px solid #999; box-shadow:none; }
+  .copybox,.note,.dialog-card,.helpdesk{ break-inside:avoid; page-break-inside:avoid; }
+  .copybox__wrap{ overflow:visible; }
+  .copybox__wrap.is-clamped::after{ display:none; }
+  .copybox__body{ max-height:none !important; overflow:visible !important; white-space:pre-wrap; font-size:9.5pt; }
+  h2,h3{ break-after:avoid; }
+  .medal{ display:block !important; }
+  .done-check__box{ appearance:auto; -webkit-appearance:none; border:1.5pt solid #000; background:#fff; }
+  .done-check__box:checked{ background:#fff; }
+  .done-check__box:checked::after{ color:#000; }
+  a[href^="http"]::after{ content:" （" attr(href) "）"; font-size:9pt; color:#333; word-break:break-all; }
+  a[href^="#"]::after{ content:none; }
+  .print-only{ display:block; }
+  @page{ margin:15mm 14mm; }
+}
+</style>
+</head><body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="topbar"><div class="wrap wrap--wide topbar__in">
+<nav class="os-switch" aria-label="このページについて"><span class="os-tab is-current" aria-current="page"><span aria-hidden="true">🗺</span> はじめる前の全体図</span></nav>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="配色を切り替える">☾</button>
+</div></header>
+<main id="main"><div class="wrap">
+<section class="hero">
+<span class="hero__label">CC-Booster をはじめる前に</span>
+<h1>そもそも、<br>何にお金を払うの？</h1>
+<p class="lead">ChatGPT、Gemini、Codex、Claude Code。名前が多すぎて、どれが何なのか分からないまま始めると、必ずどこかで詰まります。<strong>先に地図を渡します。10分で読めます。</strong></p>
+<p class="muted">このページは、手順書の<strong>前に</strong>読むものです。手を動かす作業はひとつもありません。読むだけです。</p>
+<div class="hero__row"><a class="btn btn--primary" href="#part1">1️⃣ 4つのAIの違いと料金</a><a class="btn btn--ghost" href="#part2">2️⃣ AI秘書って何ができるの</a></div>
+</section>
+<section class="sec" id="part1"><h2>1️⃣　4つのAIは、何が違うのか</h2>
+<p><span class="badge"><span class="sr-only">所要時間</span><span aria-hidden="true">⏱</span> 5分・読むだけ</span></p>
+<h3>いちばん大事な線は、ここに1本だけ引かれています</h3>
+<p>4つを覚えようとしなくていいです。<strong>まず2つに分けてください。</strong></p>
+<div class="outcome-grid">
+<article class="outcome-card"><div class="outcome-card__icon" aria-hidden="true">💬</div><h3>話を聞いてくれる人</h3><p><strong>ChatGPT ／ Gemini</strong></p><p>聞けば答えてくれます。文章も書いてくれます。でも、<strong>答えは画面の中だけ</strong>。あなたのパソコンの中身には手を出しません。</p><p class="muted">料理でいうと、電話で作り方を教えてくれる先生。</p></article>
+<article class="outcome-card"><div class="outcome-card__icon" aria-hidden="true">🛠</div><h3>手を動かしてくれる人</h3><p><strong>Codex ／ Claude Code</strong></p><p>あなたのパソコンの<strong>フォルダの中に入って、実際にファイルを作ります</strong>。記事も、資料も、道具も、そこに残ります。</p><p class="muted">料理でいうと、家に来て台所に立ってくれる人。</p></article>
+</div>
+<aside class="note note--info"><p class="note__head">💡 ここが分かれば、あとは細かい話です</p><p>ChatGPT に「ブログ書いて」と言うと、<strong>画面に文章が出ます。</strong>あなたがコピーして、どこかに貼る必要があります。</p><p>Claude Code に同じことを言うと、<strong>あなたのフォルダに原稿のファイルができます。</strong>明日開けば、そこにあります。</p><p>この差が、1年たつと大きな差になります。片方は毎回消えて、片方は積み上がるからです。</p></aside>
+<h3>誰が作っているのか（ここを知ると、名前の多さが消えます）</h3>
+<p>作っている会社は3つだけです。<strong>そして、どの会社も「話す版」と「手を動かす版」を1つずつ持っています。</strong></p>
+<div class="scroller scroller--stack"><p class="scroller__hint">→ 横にスクロールできます</p><table class="table--stack"><thead><tr><th>作っている会社</th><th>話を聞いてくれる版</th><th>手を動かしてくれる版</th></tr></thead><tbody><tr><td data-label="作っている会社">OpenAI</td><td data-label="話を聞いてくれる版"><strong>ChatGPT</strong></td><td data-label="手を動かしてくれる版"><strong>Codex</strong></td></tr><tr><td data-label="作っている会社">Anthropic</td><td data-label="話を聞いてくれる版">Claude</td><td data-label="手を動かしてくれる版"><strong>Claude Code</strong></td></tr><tr><td data-label="作っている会社">Google</td><td data-label="話を聞いてくれる版"><strong>Gemini</strong></td><td data-label="手を動かしてくれる版">Antigravity など</td></tr></tbody></table></div>
+<aside class="note note--info"><p class="note__head">💡 つまり、こういうことです</p><p><strong>Codex は、ChatGPT の「手を動かす版」。</strong>別の会社の別の商品ではありません。</p><p><strong>Claude Code は、Claude の「手を動かす版」。</strong>これも同じです。</p><p>名前が4つあるように見えて、<strong>実は「2社 × 2つの顔」</strong>を見ていただけです。</p></aside>
+<h3>何ができて、何ができないか</h3>
+<div class="scroller scroller--stack"><p class="scroller__hint">→ 横にスクロールできます</p><table class="table--stack"><thead><tr><th>やりたいこと</th><th>ChatGPT・Gemini</th><th>Codex・Claude Code</th></tr></thead><tbody><tr><td data-label="やりたいこと">聞いたことに答えてもらう</td><td data-label="ChatGPT・Gemini">◎</td><td data-label="Codex・Claude Code">◎</td></tr><tr><td data-label="やりたいこと">文章を書いてもらう</td><td data-label="ChatGPT・Gemini">◎</td><td data-label="Codex・Claude Code">◎</td></tr><tr><td data-label="やりたいこと">画像を作ってもらう</td><td data-label="ChatGPT・Gemini">◎</td><td data-label="Codex・Claude Code">△（得意ではありません）</td></tr><tr><td data-label="やりたいこと"><strong>パソコンにファイルを作ってもらう</strong></td><td data-label="ChatGPT・Gemini">✕</td><td data-label="Codex・Claude Code"><strong>◎</strong></td></tr><tr><td data-label="やりたいこと"><strong>前に話したことを覚えておいてもらう</strong></td><td data-label="ChatGPT・Gemini">△（サービス側の記憶頼み）</td><td data-label="Codex・Claude Code"><strong>◎（フォルダに残ります）</strong></td></tr><tr><td data-label="やりたいこと"><strong>自分専用の手順を道具として保存する</strong></td><td data-label="ChatGPT・Gemini">△（GPTsなど別の作り込みが要る）</td><td data-label="Codex・Claude Code"><strong>◎</strong></td></tr><tr><td data-label="やりたいこと">スマホで使う</td><td data-label="ChatGPT・Gemini">◎</td><td data-label="Codex・Claude Code">✕（パソコンだけ）</td></tr><tr><td data-label="やりたいこと">はじめやすさ</td><td data-label="ChatGPT・Gemini"><strong>◎（ブラウザを開くだけ）</strong></td><td data-label="Codex・Claude Code">△（1時間ほどの準備が要る）</td></tr></tbody></table></div>
+<p class="muted">◎できる／△条件つき／✕できない。この表は「どちらが偉いか」ではありません。<strong>用途が違うだけ</strong>です。思いつきを相談するのは ChatGPT のほうが速いです。</p>
+<h3 id="price">★お金の話（ここがいちばん誤解されます）</h3>
+<aside class="note note--danger"><p class="note__head">🛑 「Codex は無料」は、半分だけ本当です</p><p><strong>Codex は、単体で売っていません。</strong>ChatGPT のプランに「ついてくる機能」です。</p><p>だから「Codex はいくら？」という質問には、正しくはこう答えます。<strong>「Codex の値段はありません。ChatGPT にいくら払うか、です。」</strong></p><p>Claude Code もまったく同じです。<strong>Claude のプランについてくる機能</strong>で、単体では売っていません。</p></aside>
+<p>並べると、こうなります。</p>
+<div class="scroller scroller--stack"><p class="scroller__hint">→ 横にスクロールできます</p><table class="table--stack"><thead><tr><th></th><th>OpenAI</th><th>Anthropic</th></tr></thead><tbody><tr><td data-label="">入口の商品</td><td data-label="OpenAI">ChatGPT</td><td data-label="Anthropic">Claude</td></tr><tr><td data-label="">手を動かす版の名前</td><td data-label="OpenAI"><strong>Codex</strong></td><td data-label="Anthropic"><strong>Claude Code</strong></td></tr><tr><td data-label="">それ単体で買えるか</td><td data-label="OpenAI">買えません</td><td data-label="Anthropic">買えません</td></tr><tr><td data-label="">まともに使うのに必要なプラン</td><td data-label="OpenAI"><strong>Plus</strong></td><td data-label="Anthropic"><strong>Pro</strong></td></tr><tr><td data-label="">その月額</td><td data-label="OpenAI"><strong>$20</strong></td><td data-label="Anthropic"><strong>$20</strong></td></tr></tbody></table></div>
+<aside class="note note--info"><p class="note__head">🍀 結論はとても単純です</p><p><strong>どちらを選んでも、月20ドル（約3,000円）です。</strong>ここに差はありません。</p><p>差があるのは<strong>「お金を払う前に試せるかどうか」</strong>だけです。次の表を見てください。</p></aside>
+<h4>お金を払う前に、どこまで試せるか</h4>
+<div class="scroller scroller--stack"><p class="scroller__hint">→ 横にスクロールできます</p><table class="table--stack"><thead><tr><th></th><th>Codex（ChatGPT側）</th><th>Claude Code（Claude側）</th></tr></thead><tbody><tr><td data-label="">無料プランのまま動かせるか</td><td data-label="Codex（ChatGPT側）"><strong>動きます。</strong>使える量は少なめですが、払う前に手ざわりを確かめられます</td><td data-label="Claude Code（Claude側）"><strong>1回も動きません。</strong>Pro に入るまで画面が開きません</td></tr><tr><td data-label="">だから、こう試せます</td><td data-label="Codex（ChatGPT側）">先に触ってから、続けるか決められます</td><td data-label="Claude Code（Claude側）">先に払ってから、触ることになります</td></tr></tbody></table></div>
+<aside class="note note--info"><p class="note__head">💡 「もっと安い Go（$8）ではダメなの？」と思った人へ</p><p>ダメではありません。<strong>Go でも Codex は使えます。</strong>公式に「軽い開発作業向け」と書かれている枠です。</p><p>ただし<strong>使える量は Plus より少なめ</strong>で、無料プランと Go の具体的な上限は公式に出ていません。</p><p>だから、こう考えてください。<strong>まず無料で試す → 続けそうなら Go か Plus。毎日使うなら Plus が確実。</strong></p></aside>
+<h4>それぞれのプラン（2026年8月7日に確かめた金額）</h4>
+<div class="scroller scroller--stack"><p class="scroller__hint">→ 横にスクロールできます</p><table class="table--stack"><thead><tr><th>ChatGPT（OpenAI）</th><th>月額</th><th>この用途での見立て</th></tr></thead><tbody><tr><td data-label="ChatGPT（OpenAI）">Free</td><td data-label="月額">$0</td><td data-label="この用途での見立て">お試し。Codex は動きますが、使える量はとても少なめ</td></tr><tr><td data-label="ChatGPT（OpenAI）">Go</td><td data-label="月額">$8</td><td data-label="この用途での見立て">公式に「軽い開発作業向け」と書かれた枠。Codex は使えます</td></tr><tr><td data-label="ChatGPT（OpenAI）"><strong>Plus</strong></td><td data-label="月額"><strong>$20</strong></td><td data-label="この用途での見立て"><strong>ここが本命。</strong>Codex を毎日使うならこれ</td></tr><tr><td data-label="ChatGPT（OpenAI）">Pro</td><td data-label="月額">$100〜$200</td><td data-label="この用途での見立て">使う量がとても多い人向け。ここまでは要りません</td></tr></tbody></table></div>
+<div class="scroller scroller--stack"><p class="scroller__hint">→ 横にスクロールできます</p><table class="table--stack"><thead><tr><th>Claude（Anthropic）</th><th>月額</th><th>この用途での見立て</th></tr></thead><tbody><tr><td data-label="Claude（Anthropic）">Free</td><td data-label="月額">$0</td><td data-label="この用途での見立て"><strong>Claude Code は使えません</strong></td></tr><tr><td data-label="Claude（Anthropic）"><strong>Pro</strong></td><td data-label="月額"><strong>$20</strong></td><td data-label="この用途での見立て"><strong>ここが本命。</strong>AI秘書を作って毎日使うならこれ</td></tr><tr><td data-label="Claude（Anthropic）">Max</td><td data-label="月額">$100 / $200</td><td data-label="この用途での見立て">本格運用の人向け。無料版のAI秘書には要りません</td></tr></tbody></table></div>
+<div class="scroller scroller--stack"><p class="scroller__hint">→ 横にスクロールできます</p><table class="table--stack"><thead><tr><th>Gemini（Google）</th><th>月額（日本円）</th><th>この用途での見立て</th></tr></thead><tbody><tr><td data-label="Gemini（Google）">無料</td><td data-label="月額（日本円）">0円</td><td data-label="この用途での見立て">相談相手としてはこれで十分に使えます</td></tr><tr><td data-label="Gemini（Google）">Google AI Plus</td><td data-label="月額（日本円）">約1,200円</td><td data-label="この用途での見立て">軽く使う人向け</td></tr><tr><td data-label="Gemini（Google）">Google AI Pro</td><td data-label="月額（日本円）">約2,900円</td><td data-label="この用途での見立て">Deep Research などが付きます</td></tr><tr><td data-label="Gemini（Google）">Google AI Ultra</td><td data-label="月額（日本円）">約14,500円〜</td><td data-label="この用途での見立て">ここまでは要りません</td></tr></tbody></table></div>
+<aside class="note note--warn"><p class="note__head">⚠️ 金額について、正直に</p><p>この金額は <strong>2026年8月7日</strong>に調べたものです。AIの料金はよく変わります。</p><p>ドル表示のものは、<strong>為替とタイミングで請求額が変わります。</strong>$20 は、1ドル155円なら約3,100円です。</p><p><strong>払う前に、必ずご自分の画面で金額を確かめてください。</strong>そして申し込み画面では、<strong>「年間」ではなく「月間（月払い）」</strong>を選んでください。最初から年間が選ばれていることが多く、1年分がまとめて請求されます。</p></aside>
+<details class="hint"><summary><span>👉 「じゃあ、私はどれを選べばいいの？」と思った人だけ開く</span><span class="hint__pill" aria-hidden="true">押して開く</span></summary><div class="hint__body"><p>迷ったら、この順番で考えてください。</p><ol class="plain"><li><strong>すでに ChatGPT に月20ドル払っている</strong> → Codex を使ってください。追加のお金はゼロです。</li><li><strong>まだ何も払っていない</strong> → まず Codex を無料のまま触ってみてください。手ごたえがあってから決められます。</li><li><strong>とにかく手間を少なくしたい</strong> → Claude Code です。CC-Booster はもともと Claude Code のために作られているので、作り替える作業がありません。ただし先に $20 払う必要があります。</li></ol><p class="muted">どちらを選んでも、あとから乗り換えられます。作ったAI秘書の中身はただのファイルなので、フォルダごと持っていけます。</p></div></details>
+</section>
+<section class="sec" id="part2"><h2>2️⃣　今日つくる「AI秘書」って、何？</h2>
+<p><span class="badge"><span class="sr-only">所要時間</span><span aria-hidden="true">⏱</span> 4分・読むだけ</span></p>
+<p>ここまでで、<strong>Codex か Claude Code のどちらかを使う</strong>ところまで決まりました。ただ、それだけでは「なんでもできる、けど何もしてくれない人」が机に座っただけです。</p>
+<p><strong>CC-Booster は、その人に「あなたの会社の秘書」という役をあたえる仕組みです。</strong></p>
+<aside class="note note--info"><p class="note__head">💡 ひとことで言うと</p><p>AI秘書とは、<strong>あなたの言ったことを忘れない同僚</strong>です。</p><p>秘書というより、隣の席の人。毎朝おはようと言えば、昨日の続きから話が始まります。</p></aside>
+<h3>ふつうのAIと、どこが違うのか</h3>
+<div class="scroller scroller--stack"><p class="scroller__hint">→ 横にスクロールできます</p><table class="table--stack"><thead><tr><th>ふつうのAIに頼むと</th><th>AI秘書に頼むと</th></tr></thead><tbody><tr><td data-label="ふつうのAIに頼むと">毎回「私は〇〇の仕事をしていて…」から説明し直す</td><td data-label="AI秘書に頼むと"><strong>説明が要りません。</strong>あなたのゴールも、弱点も、覚えています</td></tr><tr><td data-label="ふつうのAIに頼むと">「投稿つくって」→ その場でそれっぽい文章が出る</td><td data-label="AI秘書に頼むと"><strong>いきなり作りません。</strong>まず「誰に向けて？」と聞いてきます</td></tr><tr><td data-label="ふつうのAIに頼むと">よかった手順は、あなたが覚えておくしかない</td><td data-label="AI秘書に頼むと"><strong>手順そのものを道具にして保存します。</strong>次から呼び出せます</td></tr><tr><td data-label="ふつうのAIに頼むと">答えは画面の中。閉じたら消える</td><td data-label="AI秘書に頼むと"><strong>ファイルとして残ります。</strong>開いて読めるし、書き換えられます</td></tr></tbody></table></div>
+<h3>1時間ほどで、手元に残るもの</h3>
+<div class="outcome-grid">
+<article class="outcome-card"><div class="outcome-card__icon" aria-hidden="true">🤖</div><h3>名前と性格を持ったAI秘書</h3><p>あなたと正反対の性格に設計されます。同じ考え方の相棒より役に立つからです。</p></article>
+<article class="outcome-card"><div class="outcome-card__icon" aria-hidden="true">🧭</div><h3>分身AI社長</h3><p>「それ、あなたらしい？」を見る係です。あなたの価値観で判断します。</p></article>
+<article class="outcome-card"><div class="outcome-card__icon" aria-hidden="true">📊</div><h3>100点満点のスコアカード</h3><p>発信力・影響力・ブランド力・仕組み力・行動力の5つを採点。いちばんの詰まりが数字で出ます。</p></article>
+<article class="outcome-card"><div class="outcome-card__icon" aria-hidden="true">🏢</div><h3>あなた専用の部署</h3><p>採点で弱かったところを補う部門が自動でできます。強い人と弱い人で構成が変わります。</p></article>
+</div>
+<h3>明日から、何を頼めるのか</h3>
+<div class="scroller scroller--stack"><p class="scroller__hint">→ 横にスクロールできます</p><table class="table--stack"><thead><tr><th>あなたが言うこと</th><th>起きること</th></tr></thead><tbody><tr><td data-label="あなたが言うこと">おはよう。今日やることを3つに絞って</td><td data-label="起きること">ゴールから逆算して、今日の3つを出します</td></tr><tr><td data-label="あなたが言うこと">インスタの投稿を1本つくって</td><td data-label="起きること">まず質問が返ってきます。答えると書きます</td></tr><tr><td data-label="あなたが言うこと">この文章、僕らしいかどうか見て</td><td data-label="起きること">分身AI社長が、あなたの価値観で見ます</td></tr><tr><td data-label="あなたが言うこと">頭の中がぐちゃぐちゃです。話を聞いて、整理して</td><td data-label="起きること">聞き役になって、あとで箇条書きに直します</td></tr><tr><td data-label="あなたが言うこと">さっきの手順を、次から使える道具にして</td><td data-label="起きること">道具として保存します。次から呼び出せます</td></tr><tr><td data-label="あなたが言うこと">今週のふり返りを、5行でまとめて</td><td data-label="起きること">記録を読んで、短くまとめます</td></tr></tbody></table></div>
+<aside class="note note--warn"><p class="note__head">⚠️ 正直に、できないことも書いておきます</p><p><strong>AIは間違えます。</strong>作ったものは必ずご自分の目で見てください。僕はこれを「味見」と呼んでいます。</p><p><strong>スマホではできません。</strong>パソコンだけです。</p><p><strong>いきなり売上が上がるものではありません。</strong>変わるのは、明日の朝「何からやろう」で止まる時間が短くなることです。</p></aside>
+</section>
+<section class="sec" id="part3"><h2>3️⃣　その次に、Pro版で何が増えるのか</h2>
+<p><span class="badge"><span class="sr-only">所要時間</span><span aria-hidden="true">⏱</span> 2分・読むだけ</span></p>
+<p><strong>今日やるのは、無料版です。</strong>Pro版のことは、いまは知らなくて大丈夫です。ただ「この先どこへ行けるのか」が見えていたほうが、今日の1時間の意味が分かると思うので、置いておきます。</p>
+<aside class="note note--info"><p class="note__head">💡 無料版は「苗木」です</p><p>無料版で作るのは、AI秘書が1人と、その周りの部署です。</p><p>Pro版は、そこに<strong>「深さ」と「人数」と「連携」</strong>を足すものだと思ってください。</p></aside>
+<div class="scroller scroller--stack"><p class="scroller__hint">→ 横にスクロールできます</p><table class="table--stack"><thead><tr><th>Pro版で増えるもの</th><th>何が変わるか</th></tr></thead><tbody><tr><td data-label="Pro版で増えるもの"><strong>魂磨きモード</strong>（75問の深層ヒアリング）</td><td data-label="何が変わるか">無料版は15問前後。75問かけて、価値観や判断の基準まで言葉にします。AI秘書の「あなたらしさ」の解像度が変わります</td></tr><tr><td data-label="Pro版で増えるもの"><strong>分身AI社長 × AI秘書の会議</strong></td><td data-label="何が変わるか">AIが1人で答えるのではなく、<strong>2人で議論してから</strong>方針を出します。一人で決めきれないことを預けられます</td></tr><tr><td data-label="Pro版で増えるもの"><strong>実戦済みスキルパック</strong></td><td data-label="何が変わるか">ブログ自動化、SNS展開、動画制作、リサーチ。すでに動いている道具が最初から入っています。自分で育てる時間が要りません</td></tr><tr><td data-label="Pro版で増えるもの"><strong>AIエージェントチーム</strong></td><td data-label="何が変わるか">専門の担当が複数立って、手分けして動きます。AI同士が連携して進む世界（A2A）を体験できます</td></tr></tbody></table></div>
+<p class="muted">Pro版は有料講座の形で提供されているものです。内容は変わることがあるので、最新は配布元でご確認ください。</p>
+<aside class="note note--info"><p class="note__head">🍀 いまの正しい順番</p><p><strong>まず無料版を1本、最後まで通してください。</strong></p><p>その体験があると、Pro版の説明が「言葉」ではなく「あの続き」として読めます。逆に、通す前に Pro版を検討しても、たぶん判断できません。</p></aside>
+</section>
+<section class="sec" id="map"><h2>ぜんぶの地図</h2>
+<p>ここまでの話を、1本の道にするとこうなります。</p>
+<div class="step-map">
+<span class="map-item"><span class="map-item__no" aria-hidden="true">1</span><span class="map-item__title">どちらのAIを使うか決める</span><span class="map-item__time"><span aria-hidden="true">⏱</span> 10分・このページ</span></span>
+<span class="map-item"><span class="map-item__no" aria-hidden="true">2</span><span class="map-item__title">アプリを入れて、日本語で返事をさせる</span><span class="map-item__time"><span aria-hidden="true">⏱</span> 約20分</span></span>
+<span class="map-item"><span class="map-item__no" aria-hidden="true">3</span><span class="map-item__title">AI秘書の中身をフォルダに置く</span><span class="map-item__time"><span aria-hidden="true">⏱</span> 約10分</span></span>
+<span class="map-item"><span class="map-item__no" aria-hidden="true">4</span><span class="map-item__title">質問に答えて、AI秘書ができる</span><span class="map-item__time"><span aria-hidden="true">⏱</span> 約20分</span></span>
+<span class="map-item"><span class="map-item__no" aria-hidden="true">5</span><span class="map-item__title">3つのクエストで遊ぶ</span><span class="map-item__time"><span aria-hidden="true">⏱</span> 約15分</span></span>
+<span class="map-item"><span class="map-item__no" aria-hidden="true">6</span><span class="map-item__title">明日の朝、話しかける</span><span class="map-item__time"><span aria-hidden="true">⏱</span> 毎日</span></span>
+</div>
+<p><strong>2から5が、手順書の中身です。</strong>お使いのAIとパソコンに合うものを開いてください。</p>
+<div class="medal">
+<p class="medal__title"><span aria-hidden="true">🌱</span> 最後に、ひとつだけ</p>
+<p>セミナーで習って、家でパソコン開いて、できなくて閉じる。<br>やっぱり、自分には向いてないのかな……と自己嫌悪。</p>
+<p><strong>あれが起きるのは、手を動かす人がいなかったからです。</strong></p>
+<p>ここから先は、手を動かす人が隣にいます。<br><strong>あなたの仕事は、何をやりたいかを決めることだけになります。</strong></p>
+</div>
+<h3>手順書を開く</h3>
+<div class="scroller scroller--stack"><p class="scroller__hint">→ 横にスクロールできます</p><table class="table--stack"><thead><tr><th>使うAI</th><th>Mac</th><th>Windows</th></tr></thead><tbody><tr><td data-label="使うAI"><strong>Claude Code</strong>（手間が少ない／$20が先に要る）</td><td data-label="Mac"><a class="btn btn--primary" href="claude-code/mac.html">🍎 Mac版を開く</a></td><td data-label="Windows"><a class="btn btn--primary" href="claude-code/windows.html">🪟 Windows版を開く</a></td></tr><tr><td data-label="使うAI"><strong>Codex</strong>（無料で試せる／少し手間がある）</td><td data-label="Mac"><a class="btn btn--ghost" href="codex/mac.html">🍎 Mac版を開く</a></td><td data-label="Windows"><a class="btn btn--ghost" href="codex/windows.html">🪟 Windows版を開く</a></td></tr></tbody></table></div>
+<p class="muted">リンクが開かないときは、4つの手順書とこのページが同じ場所に置かれているか見てみてください。</p>
+</section>
+<footer class="footer">
+<h2>おわりに</h2>
+<p>ここまで読んでくださって、ありがとうございます。<strong>難しい言葉を1つも使わずに書いたつもりです。</strong>それでも分からないところがあったら、それは僕の書き方の問題です。教えてください。</p>
+<div class="footer__row"><a class="btn btn--primary" href="https://goton.info/line"><span aria-hidden="true">💬</span> 分からないところを聞く</a></div>
+<h3>このページについて</h3>
+<p>このページは、AIと一緒に作りました。料金や仕様は、その日に公式の案内を読んで確かめています。中身の判断は、ぜんぶ僕がしています。</p>
+<h3>何を確かめて、何を確かめていないか</h3>
+<div class="scroller scroller--stack"><p class="scroller__hint">→ 横にスクロールできます</p><table class="table--stack"><thead><tr><th>確かめたこと</th><th>どうやって</th></tr></thead><tbody><tr><td data-label="確かめたこと">Codex が単体では売られておらず、ChatGPT のプランに含まれること</td><td data-label="どうやって">OpenAI の案内と、複数の解説を突き合わせました</td></tr><tr><td data-label="確かめたこと">Claude Code が Pro 以上でないと使えないこと</td><td data-label="どうやって">公式ドキュメントに明記されています</td></tr><tr><td data-label="確かめたこと">Go（$8）でも Codex が使えること</td><td data-label="どうやって">OpenAI の公式の料金ページに、Codex のプランとして「軽い開発作業向け」と書かれています</td></tr><tr><td data-label="確かめたこと">Codex・Claude Code が、自分のパソコンにファイルを作れること</td><td data-label="どうやって">僕が自分のパソコンで、実際に動かして確かめました</td></tr></tbody></table></div>
+<div class="scroller scroller--stack"><p class="scroller__hint">→ 横にスクロールできます</p><table class="table--stack"><thead><tr><th>確かめていないこと</th><th>だからどう書いたか</th></tr></thead><tbody><tr><td data-label="確かめていないこと">料金がこの先どうなるか</td><td data-label="だからどう書いたか">「2026年8月7日に確かめた金額」と日付を入れて、必ず自分の画面で確認するよう書いています</td></tr><tr><td data-label="確かめていないこと">日本円での実際の請求額</td><td data-label="だからどう書いたか">為替で変わるので、目安としてだけ書いています</td></tr><tr><td data-label="確かめていないこと">Google の Antigravity など、手を動かす版の細かい違い</td><td data-label="だからどう書いたか">この地図では名前だけにとどめています。今回は使いません</td></tr><tr><td data-label="確かめていないこと">Pro版の最新の内容</td><td data-label="だからどう書いたか">配布元の案内をもとにしています。変わることがあると書き添えました</td></tr></tbody></table></div>
+<p class="muted">違っていたら教えてください。次に読む人のために直します。送り先は <a href="https://goton.info/line">https://goton.info/line</a> です。</p>
+<p class="muted">更新日：2026年8月7日</p>
+</footer>
+</div></main>
+<script>
+(function(){
+  'use strict';
+  var KEY='ccbx.theme';
+  var btn=document.getElementById('themeToggle');
+  function paint(){
+    var cur=document.documentElement.getAttribute('data-theme');
+    var dark=cur==='dark';
+    if(!cur){try{dark=window.matchMedia('(prefers-color-scheme: dark)').matches;}catch(e){}}
+    if(btn){btn.textContent=dark?'☼':'☾';}
+    return dark;
+  }
+  if(btn){
+    paint();
+    btn.addEventListener('click',function(){
+      var dark=paint();
+      var next=dark?'light':'dark';
+      document.documentElement.setAttribute('data-theme',next);
+      try{localStorage.setItem(KEY,next);}catch(e){}
+      paint();
+    });
+  }
+})();
+</script>
+</body></html>
